@@ -1,13 +1,13 @@
+#include <inttypes.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <inttypes.h>
 #include <string.h>
+#include "esp_log.h"
+#include "esp_system.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
 #include "nvs.h"
-#include "esp_log.h"
+#include "nvs_flash.h"
 
 #include "storage_wrapper.h"
 
@@ -131,8 +131,10 @@ esp_err_t storageSetString(const char *tag, const char *val) {
  * @param tag Tag of the value.
  * @param val String to copy data to.
  * @param def Default value if the tag is not found. If NULL, the out buffer won't be modified.
- * @param maxLen Maximum length of the string. Should be set to the size of the val buffer. Includes the null terminator.
- * @param trn Pointer to a boolean that is set to true if the string was truncated. (Did not fit into the buffer.) Can be NULL.
+ * @param maxLen Maximum length of the string. Should be set to the size of the val buffer. Includes the null
+ * terminator.
+ * @param trn Pointer to a boolean that is set to true if the string was truncated. (Did not fit into the buffer.) Can
+ * be NULL.
  * @return ESP_OK on success, error code otherwise.
  */
 esp_err_t storageGetString(const char *tag, char *val, const char *def, size_t maxLen, bool *trn) {
@@ -203,7 +205,8 @@ esp_err_t storageSetBlob(const char *tag, void *ptr, size_t len) {
  * @param ptr Pointer to the data.
  * @param len Pointer to the length of the data.
  * @param maxLen Maximum length of the data. Should be set to the size of the ptr buffer.
- * @param trn Pointer to a boolean that is set to true if the data was truncated. (Did not fit into the buffer.) Can be NULL.
+ * @param trn Pointer to a boolean that is set to true if the data was truncated. (Did not fit into the buffer.) Can be
+ * NULL.
  * @return ESP_OK on success, error code otherwise.
  */
 esp_err_t storageGetBlob(const char *tag, void *ptr, size_t *len, size_t maxLen, bool *trn) {

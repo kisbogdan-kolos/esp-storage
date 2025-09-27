@@ -1,10 +1,10 @@
 #pragma once
 
+#include <inttypes.h>
+#include <nvs.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <inttypes.h>
 #include <string.h>
-#include <nvs.h>
 
 #define STR_BUF_LEN 100
 #define BLB_BUF_LEN 500

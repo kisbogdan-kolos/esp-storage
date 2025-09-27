@@ -2,9 +2,10 @@
 #include "argtable3/argtable3.h"
 #include "esp_console.h"
 #include "nvs.h"
+#include "nvs_flash.h"
 
-#include "storage_wrapper.h"
 #include "hexdump.h"
+#include "storage_wrapper.h"
 
 static struct {
     struct arg_str *tag;
@@ -104,7 +105,8 @@ static int setString(int argc, char **argv) {
     }
 
     esp_err_t err = storageSetString(setStringArgs.tag->sval[0], setStringArgs.val->sval[0]);
-    // esp_err_t err = storageSetBlob(setStringArgs.tag->sval[0], "This is a hardcoded string\n\n\t\t\0\0aabbcc---\nWith a length of 69; nice.", 69);
+    // esp_err_t err = storageSetBlob(setStringArgs.tag->sval[0], "This is a hardcoded string\n\n\t\t\0\0aabbcc---\nWith
+    // a length of 69; nice.", 69);
 
     if (err == ESP_OK) {
         printf("Write success\n");
@@ -168,28 +170,17 @@ static int delete(int argc, char **argv) {
 
 static char *typeToString(nvs_type_t type) {
     switch (type) {
-        case NVS_TYPE_U8:
-            return "U8";
-        case NVS_TYPE_I8:
-            return "I8";
-        case NVS_TYPE_U16:
-            return "U16";
-        case NVS_TYPE_I16:
-            return "I16";
-        case NVS_TYPE_U32:
-            return "U32";
-        case NVS_TYPE_I32:
-            return "I32";
-        case NVS_TYPE_U64:
-            return "U64";
-        case NVS_TYPE_I64:
-            return "I64";
-        case NVS_TYPE_STR:
-            return "STR";
-        case NVS_TYPE_BLOB:
-            return "BLOB";
-        default:
-            return "UNKNOWN";
+        case NVS_TYPE_U8: return "U8";
+        case NVS_TYPE_I8: return "I8";
+        case NVS_TYPE_U16: return "U16";
+        case NVS_TYPE_I16: return "I16";
+        case NVS_TYPE_U32: return "U32";
+        case NVS_TYPE_I32: return "I32";
+        case NVS_TYPE_U64: return "U64";
+        case NVS_TYPE_I64: return "I64";
+        case NVS_TYPE_STR: return "STR";
+        case NVS_TYPE_BLOB: return "BLOB";
+        default: return "UNKNOWN";
     }
 }
 

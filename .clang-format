@@ -1,0 +1,27 @@
+---
+BasedOnStyle: Chromium
+InsertNewlineAtEOF: true
+TabWidth: 4
+IndentWidth: 4
+SpaceAfterCStyleCast: true
+
+ColumnLimit: 120
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortEnumsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
+
+BinPackParameters: false
+BinPackArguments: false
+
+SpacesBeforeTrailingComments: 1
+AccessModifierOffset: -4
+
+Cpp11BracedListStyle: false
+
+PointerAlignment: Right
+
+AlignArrayOfStructures: Left
+AllowShortBlocksOnASingleLine: Never
+AlignAfterOpenBracket: BlockIndent
