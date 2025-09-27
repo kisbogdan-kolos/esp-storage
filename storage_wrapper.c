@@ -46,7 +46,17 @@ esp_err_t storageInit() {
         err = nvs_flash_init();
     }
 
-    return err;
+    if (err != ESP_OK)
+        return err;
+
+    nvs_handle_t storage;
+    err = open(NVS_READONLY, &storage);
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    close(&storage);
+    return ESP_OK;
 }
 
 /**

@@ -218,6 +218,13 @@ static int printInfo(int argc, char **argv) {
     return 0;
 }
 
+static int eraseNVS(int, char **) {
+    nvs_flash_erase();
+    printf("NVS partition erased.\n");
+
+    return 0;
+}
+
 esp_err_t storageRegisterCommands() {
     getIntArgs.tag = arg_str1("t", "tag", "<string>", "Tag for data");
     getIntArgs.end = arg_end(1);
@@ -315,6 +322,17 @@ esp_err_t storageRegisterCommands() {
         .func = &printInfo,
     };
     err = esp_console_cmd_register(&infoCmd);
+
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    esp_console_cmd_t eraseCmd = {
+        .command = "storage-erase-flash",
+        .help = "Erases the NVS partition.",
+        .func = &eraseNVS,
+    };
+    err = esp_console_cmd_register(&eraseCmd);
 
     return err;
 }
